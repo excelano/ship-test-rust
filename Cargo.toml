@@ -12,3 +12,6 @@ publish = false
 [package.metadata.deb]
 maintainer = "David M. Anderson <david.anderson@excelano.com>"
 section = "utils"
+
+[package.metadata.dist]
+dist = true
