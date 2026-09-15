@@ -1,0 +1,19 @@
+name: sdk-probe
+
+# What the Windows runner image carries of the Windows SDK, asked once.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: windows-latest
+    steps:
+      - name: SDK tools on the image
+        shell: pwsh
+        run: |
+          foreach ($t in 'makeappx.exe','makepri.exe','signtool.exe','appcert.exe','makecert.exe') {
+            $hits = Get-ChildItem -Path 'C:\Program Files (x86)\Windows Kits\10' -Recurse -Filter $t -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName
+            if ($hits) { "$t : " + ($hits | Select-Object -Last 1) } else { "$t : none" }
+          }
+          Get-ChildItem 'C:\Program Files (x86)\Windows Kits\10\bin' -Directory | Select-Object -ExpandProperty Name
+          Test-Path 'C:\Program Files (x86)\Windows Kits\10\App Certification Kit\appcert.exe'
