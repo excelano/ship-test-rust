@@ -1,0 +1,11 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    uses: excelano/.github/.github/workflows/rust-ci.yml@main
