@@ -14,13 +14,19 @@ on:
         required: false
         type: boolean
         default: false
+      fleet_apt:
+        description: 'Add the Excelano apt source before installing'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
 
 jobs:
   deb:
-    uses: excelano/.github/.github/workflows/deb.yml@main
+    uses: excelano/.github/.github/workflows/deb.yml@fleet-apt-source
     with:
       tag: ${{ github.event.release.tag_name || inputs.tag }}
       dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+      fleet_apt: ${{ github.event_name == 'workflow_dispatch' && inputs.fleet_apt }}
