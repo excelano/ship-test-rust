@@ -1,6 +1,6 @@
 [package]
 name = "ship-test-rust"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 description = "ship throwaway: a Rust command that exists to be released"
 license = "MIT"
